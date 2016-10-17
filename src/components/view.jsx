@@ -16,9 +16,9 @@ var FormWrapper = React.createClass({
 
     return (
 	<div style={style}>
-	<Text text={this.props.text} onChangeText={this.changeText}/>
-        <NameForm name={this.props.name} onChangeName={this.changeText}/>
-        <ToForm to={this.props.to} onChangeName={this.changeText}/>
+	  <Text text={this.props.text} onChangeText={this.changeText}/>
+          <NameForm name={this.props.name} onChangeName={this.changeText}/>
+          <ToForm to={this.props.to} onChangeName={this.changeText}/>
 	</div>
     );
   }
@@ -39,8 +39,8 @@ var Text = React.createClass({
 
     return (
 	<div style={style}>
-	<p>テキストフォーム</p>
-        <input type="text" value={this.props.text} onChange={this.changeText}/>
+	  <p>テキストフォーム</p>
+          <input type="text" value={this.props.text} onChange={this.changeText}/>
 	</div>
     );
   }
@@ -56,8 +56,8 @@ var ToForm = React.createClass({
   render() {
     return (
         <div>
-	<p>To:</p>
-	<input type="text" value={this.props.name} onChange={this.changeName} />
+	  <p>To:</p>
+	  <input type="text" value={this.props.name} onChange={this.changeName} />
         </div>
     );
   }
@@ -73,8 +73,8 @@ var NameForm = React.createClass({
   render() {
     return (
         <div>
-	<p>名前</p>
-	<input type="text" value={this.props.name} onChange={this.changeName} />
+	  <p>名前</p>
+	  <input type="text" value={this.props.name} onChange={this.changeName} />
         </div>
     );
   }
@@ -92,9 +92,9 @@ var PreView = React.createClass({
 
     return (
 	<div style={style}>
-	<p>To: {this.props.to}</p>
-        <p>テストフォームの値は「{this.props.text}」です</p>
-        <p>名前は「{this.props.name}」です</p>
+	  <p>To: {this.props.to}</p>
+          <p>テストフォームの値は「{this.props.text}」です</p>
+          <p>名前は「{this.props.name}」です</p>
 	</div>
     );
   }
@@ -135,16 +135,16 @@ const View = React.createClass({
     return(
 	<div style={style}>
 	<FormWrapper
-      onChange={this.changeText}
-      text={this.state.text}
-      name={this.state.name}
-      to={this.state.to}
+	   onChange={this.changeText}
+	   text={this.state.text}
+	   name={this.state.name}
+	   to={this.state.to}
 	/>
 	<PreView
-      text={this.state.text}
-      name={this.state.name}
-      to={this.state.to}
-      changedValue={this.state.changedValue}
+	   text={this.state.text}
+	   name={this.state.name}
+	   to={this.state.to}
+	   changedValue={this.state.changedValue}
 	/>
 	</div>
     );
