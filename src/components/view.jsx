@@ -128,7 +128,7 @@ var IdPasswordForm = React.createClass({
 var IdPasswordFormList = React.createClass({
   getInitialState() {
     return {
-      ids: [ {id: '', password: "", index: 0}, {id: '', password: "", index: 1} ]
+      ids: [ {id: '', password: "", index: 0} ]
     };
   },
   changeText: function(changeset) {
@@ -151,7 +151,14 @@ var IdPasswordFormList = React.createClass({
     this.props.onChange({key: 'ids', value: new_state});
   },
   onClick() {
-    this.setState({ids: this.state.ids.concat([{id: '', password: '', key: this.state.ids.length + 1}])});
+    var new_state = update(this.state.ids, {$push: [{id: '', password: '', index: this.state.ids.length}]});
+    this.setState({ids: new_state});
+    this.props.onChange({key: 'ids', value: new_state});
+  },
+  delete() {
+    var new_state = update(this.state.ids, {$splice: [[this.state.ids.length - 1, 1]]});
+    this.setState({ ids: new_state });
+    this.props.onChange({key: 'ids', value: new_state});
   },
   render() {
     var ids = this.state.ids.map((id) => {
@@ -161,6 +168,7 @@ var IdPasswordFormList = React.createClass({
       <div>
 	{ids}
 	<button onClick={this.onClick}>+</button>
+	<button onClick={this.delete}>-</button>
       </div>
     );
   }
@@ -177,11 +185,11 @@ var PreView = React.createClass({
     const style = Object.assign({},{
     });
 
-    var tds = this.props.ids.map((id) => {
-      return (<tr>
-	      <td>{id.id}</td>
-	      <td>{id.password}</td>
-	      </tr>
+    var id_list = this.props.ids.map((id) => {
+      return (<dl key={id.index}>
+	      <dt>ID: {id.id}</dt>
+	      <dt>PASSWORD: {id.password}</dt>
+	      </dl>
 	     );
     });
 
@@ -191,13 +199,7 @@ var PreView = React.createClass({
           <p>テストフォームの値は「{this.props.text}」です</p>
           <p>名前は「{this.props.name}」です</p>
           <p>コンテント「{this.props.content}」です</p>
-	  <table>
-	    <tr>
-	      <th>ID</th>
-	      <th>パスワード</th>
-	    </tr>
-	    {tds}
-	  </table>
+	  {id_list}
 	</div>
     );
   }
@@ -218,7 +220,7 @@ const View = React.createClass({
       text: "",
       name: "h-izu",
       to: "",
-      ids: [ {id: '', password: "", index: 0}, {id: '', password: "", index: 1} ],
+      ids: [ {id: '', password: "", index: 0}],
       content: ""
     };
   },
@@ -238,7 +240,6 @@ const View = React.createClass({
       this.setState({content: changeset.value, changedValue: changeset.key});
       break;
     case 'ids':
-      console.log(changeset.value);
       this.setState({ids: changeset.value, changedValue: changeset.key});
       break;
     }
