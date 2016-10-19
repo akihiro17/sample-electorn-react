@@ -1,51 +1,27 @@
 import React, { Component } from 'react';
-import update from 'immutability-helper';
+import PreView from './Preview';
+import NameForm from './NameForm';
+import IdPasswordFormList from './IdPasswordFormList.jsx';
 
 var FormWrapper = React.createClass({
   propTypes: {
-    text: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     to: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired
+    game: React.PropTypes.string.isRequired
   },
   changeText: function(changeset) {
     this.props.onChange(changeset);
   },
   render() {
     const style = Object.assign({},{
-      borderRight: 'solid'
     });
 
     return (
-	<div style={style}>
-	  <Text text={this.props.text} onChangeText={this.changeText}/>
-          <NameForm name={this.props.name} onChangeName={this.changeText}/>
-          <ToForm to={this.props.to} onChangeName={this.changeText}/>
-          <ContentForm content={this.props.content} onChangeName={this.changeText}/>
-          <IdPasswordFormList onChange={this.changeText}/>
-	</div>
-    );
-  }
-});
-
-var Text = React.createClass({
-  propTypes: {
-    text: React.PropTypes.string.isRequired
-  },
-  changeText: function(e) {
-    this.props.onChangeText({key: 'text', value: e.target.value});
-  },
-  render() {
-    const style = Object.assign({},{
-      marginRight: '10%',
-      marginLeft: '0%'
-    });
-
-    return (
-	<div style={style}>
-	  <p>テキストフォーム</p>
-          <input type="text" value={this.props.text} onChange={this.changeText}/>
-	</div>
+      <div style={style}>
+        <NameForm name={this.props.name} onChangeName={this.changeText}/>
+        <ToForm to={this.props.to} onChangeName={this.changeText}/>
+        <GameForm game={this.props.game} onChangeName={this.changeText}/>
+      </div>
     );
   }
 });
@@ -58,153 +34,35 @@ var ToForm = React.createClass({
     this.props.onChangeName({key: 'to', value: e.target.value});
   },
   render() {
-    return (
-        <div>
-	  <p>To:</p>
-	  <input type="text" value={this.props.name} onChange={this.changeName} />
-        </div>
-    );
-  }
-});
-
-var NameForm = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired
-  },
-  changeName: function(e) {
-    this.props.onChangeName({key: 'name', value: e.target.value});
-  },
-  render() {
-    return (
-        <div>
-	  <p>名前</p>
-	  <input type="text" value={this.props.name} onChange={this.changeName} />
-        </div>
-    );
-  }
-});
-
-var ContentForm = React.createClass({
-  propTypes: {
-    content: React.PropTypes.string.isRequired
-  },
-  changeContent: function(e) {
-    this.props.onChangeName({key: 'content', value: e.target.value});
-  },
-  render() {
-    return (
-        <div>
-	  <p>content</p>
-	  <input type="text" value={this.props.content} onChange={this.changeContent} />
-        </div>
-    );
-  }
-});
-
-var IdPasswordForm = React.createClass({
-  propTypes: {
-    id: React.PropTypes.string.isRequired,
-    password: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired
-  },
-  changeId: function(e) {
-    this.props.onChangeName({key: 'id', value: e.target.value, index: this.props.index});
-  },
-  changePassword: function(e) {
-    this.props.onChangeName({key: 'password', value: e.target.value, index: this.props.index});
-  },
-  render() {
-    return (
-      <div>
-	<p>id</p>
-	<input type="text" value={this.props.id} onChange={this.changeId} />
-	<p>パスワード</p>
-	<input type="text" value={this.props.password} onChange={this.changePassword} />
-      </div>
-    );
-  }
-});
-
-var IdPasswordFormList = React.createClass({
-  getInitialState() {
-    return {
-      ids: [ {id: '', password: "", index: 0} ]
-    };
-  },
-  changeText: function(changeset) {
-    var new_state = this.state.ids.map((id) => {
-      if (id.index == changeset.index) {
-	var target_id = this.state.ids[changeset.index];
-	switch(changeset.key) {
-	case 'id':
-	  return {id: changeset.value, password: id.password, index: id.index};
-	case 'password':
-	  return {id: id.id, password: changeset.value, index: id.index};
-	default:
-	  return id;
-	}
-      } else {
-	return id;
-      }
-    });
-    this.setState({ids: new_state});
-    this.props.onChange({key: 'ids', value: new_state});
-  },
-  onClick() {
-    var new_state = update(this.state.ids, {$push: [{id: '', password: '', index: this.state.ids.length}]});
-    this.setState({ids: new_state});
-    this.props.onChange({key: 'ids', value: new_state});
-  },
-  delete() {
-    var new_state = update(this.state.ids, {$splice: [[this.state.ids.length - 1, 1]]});
-    this.setState({ ids: new_state });
-    this.props.onChange({key: 'ids', value: new_state});
-  },
-  render() {
-    var ids = this.state.ids.map((id) => {
-      return <IdPasswordForm key={id.index} index={id.index} id={id.id} password={id.password} onChangeName={this.changeText}/>;
-    });
-    return (
-      <div>
-	{ids}
-	<button onClick={this.onClick}>+</button>
-	<button onClick={this.delete}>-</button>
-      </div>
-    );
-  }
-});
-
-var PreView = React.createClass({
-  propTypes: {
-    text: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired,
-    changedValue: React.PropTypes.string.isRequired
-  },
-  render() {
     const style = Object.assign({},{
-    });
-
-    var id_list = this.props.ids.map((id) => {
-      return (<dl key={id.index}>
-	      <dt>ID: {id.id}</dt>
-	      <dt>PASSWORD: {id.password}</dt>
-	      </dl>
-	     );
+      marginRight: '10%'
     });
 
     return (
-	<div style={style}>
-	  <p>To: {this.props.to}</p>
-          <p>テストフォームの値は「{this.props.text}」です</p>
-          <p>名前は「{this.props.name}」です</p>
-          <p>コンテント「{this.props.content}」です</p>
-	  {id_list}
-	</div>
+      <div style={style}>
+	<p>To:</p>
+	<input type="text" value={this.props.name} onChange={this.changeName} />
+      </div>
     );
   }
 });
 
+var GameForm = React.createClass({
+  propTypes: {
+    game: React.PropTypes.string.isRequired
+  },
+  changeGame: function(e) {
+    this.props.onChangeName({key: 'game', value: e.target.value});
+  },
+  render() {
+    return (
+        <div>
+	  <p>game</p>
+	  <input type="text" value={this.props.game} onChange={this.changeGame} />
+        </div>
+    );
+  }
+});
 
 const style = Object.assign({},{
   display: 'flex',
@@ -221,23 +79,20 @@ const View = React.createClass({
       name: "h-izu",
       to: "",
       ids: [ {id: '', password: "", index: 0}],
-      content: ""
+      game: ""
     };
   },
   changeText: function(changeset) {
     console.log(changeset);
     switch(changeset.key) {
-    case 'text':
-      this.setState({text: changeset.value, changedValue: changeset.key});
-      break;
     case 'name':
       this.setState({name: changeset.value, changedValue: changeset.key});
       break;
     case 'to':
       this.setState({to: changeset.value, changedValue: changeset.key});
       break;
-    case 'content':
-      this.setState({content: changeset.value, changedValue: changeset.key});
+    case 'game':
+      this.setState({game: changeset.value, changedValue: changeset.key});
       break;
     case 'ids':
       this.setState({ids: changeset.value, changedValue: changeset.key});
@@ -249,16 +104,15 @@ const View = React.createClass({
 	<div style={style}>
 	<FormWrapper
 	   onChange={this.changeText}
-	   text={this.state.text}
 	   name={this.state.name}
 	   to={this.state.to}
-	   content={this.state.content}
+	   game={this.state.game}
 	/>
+	<IdPasswordFormList onChange={this.changeText}/>
 	<PreView
-	   text={this.state.text}
 	   name={this.state.name}
 	   to={this.state.to}
-	   content={this.state.content}
+	   game={this.state.game}
 	   ids={this.state.ids}
 	   changedValue={this.state.changedValue}
 	/>
