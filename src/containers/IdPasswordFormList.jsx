@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import IdForm from './IdForm';
 
 let IdPasswordFormList = ({ids, onChangeContent, onChangeId, onChangePassword, addId, deleteId}) => {
   const onClick = () => {
@@ -11,31 +12,8 @@ let IdPasswordFormList = ({ids, onChangeContent, onChangeId, onChangePassword, a
     deleteId();
   };
 
-  const style = Object.assign({},{
-    marginRight: '10%',
-    marginBottom: '5%',
-    marginTop: '5%',
-    borderStyle: 'groove',
-    padding: '5%'
-  });
+  const id_forms = ids.map((id) => <IdForm key={id.index} id={id} onChangeContent={onChangeContent} onChangeId={onChangeId} onChangePassword={onChangePassword}/> );
 
-  const input_style = Object.assign({},{
-    boxSizing: 'content-box',
-    width: '100%'
-  });
-
-  const id_forms = ids.map((id) => {
-    return (
-      <div key={id.index} style={style}>
-        <p>コンテンツ名</p>
-        <input style={input_style} type="text" value={id.content} onChange={(e) => onChangeContent(e.target.value, id.index)}/>
-          <p>id</p>
-          <input style={input_style} type="text" value={id.id} onChange={(e) => onChangeId(e.target.value, id.index)}/>
-          <p>パスワード</p>
-          <input style={input_style} type="text" value={id.password} onChange={(e) => onChangePassword(e.target.value, id.index)}/>
-      </div>
-    );
-  });
   return (
     <div>
       {id_forms}

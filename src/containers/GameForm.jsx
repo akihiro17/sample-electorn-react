@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 let GameForm = ({dispatch}) => {
-  const style = Object.assign({},{
+  const style = {
     boxSizing: 'content-box',
     width: '100%'
-  });
+  };
 
   let input;
   const changeGame = (e) => {

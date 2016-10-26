@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 let CcForm = ({dispatch}) => {
-  const style = Object.assign({},{
+  const style = {
     boxSizing: 'content-box',
     width: '100%'
-  });
+  };
 
   const changeCc = (e) => {
     e.preventDefault();

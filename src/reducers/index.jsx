@@ -12,7 +12,7 @@ export function changeText(state, action) {
     return update(state, {name: {$set: action.text}});
   case 'CHANGE_GAME':
     return update(state, {game: {$set: action.text}});
-  case 'CHANGE_CONTENT':
+  case 'CHANGE_CONTENT': {
     const new_state = state.ids.map((id) => {
       if (id.index == action.index) {
         return ({id: id.id, password: id.password, content: action.text, index: id.index});
@@ -21,7 +21,8 @@ export function changeText(state, action) {
       }
     });
     return update(state, {ids: {$set: new_state}});
-  case 'CHANGE_ID':
+  }
+  case 'CHANGE_ID': {
     const content_changed = state.ids.map((id) => {
       if (id.index == action.index) {
         return ({id: action.text, password: id.password, content: id.content, index: id.index});
@@ -30,7 +31,8 @@ export function changeText(state, action) {
       }
     });
     return update(state, {ids: {$set: content_changed}});
-  case 'CHANGE_PASSWORD':
+  }
+  case 'CHANGE_PASSWORD': {
     const password_changed = state.ids.map((id) => {
       if (id.index == action.index) {
         return ({id: id.id,  password: action.text, content: id.content, index: id.index});
@@ -39,6 +41,7 @@ export function changeText(state, action) {
       }
     });
     return update(state, {ids: {$set: password_changed}});
+  }
   case 'ADD_ID':
     return Object.assign({}, state,{
       ids:[
@@ -57,7 +60,7 @@ export function changeText(state, action) {
     });
   default:
     return state;
-  };
+  }
 }
 
 export default changeText;

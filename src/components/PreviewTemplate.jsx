@@ -14,7 +14,7 @@ const CopyButton = React.createClass({
 });
 
 const PreViewTemplate = ({text}) => {
-  const style = Object.assign({},{
+  const style = {
     overflowY: 'auto',
     marginLeft: '5%',
     backgroundColor: 'white',
@@ -22,7 +22,7 @@ const PreViewTemplate = ({text}) => {
     height: '100%',
     position: 'absolute',
     top: '5%'
-  });
+  };
 
   return (
     <div style={{flexBasis: '50%', position: 'relative'}}>
