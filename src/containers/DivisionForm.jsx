@@ -2,31 +2,33 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-let DivisionForm = ({dispatch}) => {
+let DivisionForm = ({division, dispatch}) => {
   const style = {
     boxSizing: 'content-box',
     width: '100%'
   };
 
-  let input;
   const changeDivision = (e) => {
-    e.preventDefault();
     dispatch(actions.changeDivision(e.target.value));
-    input.value=e.target.value;
   };
 
   return (
     <div>
       <p>所属:</p>
-      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeDivision} />
+      <input style={style} type="text" value={division} onChange={changeDivision} />
     </div>
   );
 };
 
 DivisionForm.propTypes = {
+  division: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
-DivisionForm = connect()(DivisionForm);
+function mapStateToProps(state) {
+  return { division: state.division };
+}
+
+DivisionForm = connect(mapStateToProps)(DivisionForm);
 
 export default DivisionForm;

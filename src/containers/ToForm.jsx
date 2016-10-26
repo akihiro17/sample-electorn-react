@@ -2,32 +2,33 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-let ToForm = ({dispatch}) => {
+let ToForm = ({to, dispatch}) => {
   const style = {
     boxSizing: 'content-box',
     width: '100%'
   };
 
-  let input;
   const onChange= (e) => {
-    e.preventDefault();
     dispatch(actions.changeTo(e.target.value));
-    input.value=e.target.value;
   };
 
   return (
     <div style={style}>
       <p>To:</p>
-      <input style={style} type="text" ref={(node) => {input = node;}} onChange={onChange}/>
+      <input style={style} type="text" value={to} onChange={onChange}/>
     </div>
   );
 };
 
 ToForm.propTypes = {
+  to: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
-ToForm = connect()(ToForm);
+function mapStateToProps(state) {
+  return { to: state.to };
+}
 
+ToForm = connect(mapStateToProps)(ToForm);
 
 export default ToForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PreView from '../containers/Preview';
-import FormWrapper from '../containers/FormWrapper.jsx';
+import FormWrapper from './FormWrapper.jsx';
 
 const View = () => {
   const style = {

@@ -2,31 +2,33 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-let GameForm = ({dispatch}) => {
+let GameForm = ({game, dispatch}) => {
   const style = {
     boxSizing: 'content-box',
     width: '100%'
   };
 
-  let input;
   const changeGame = (e) => {
-    e.preventDefault();
     dispatch(actions.changeGame(e.target.value));
-    input.value=e.target.value;
   };
 
   return (
     <div>
       <p>ゲーム名</p>
-      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeGame}/>
+      <input style={style} type="text" value={game} onChange={changeGame}/>
     </div>
   );
 };
 
 GameForm.propTypes = {
+  game: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
-GameForm = connect()(GameForm);
+function mapStateToProps(state) {
+  return { game: state.game };
+}
+
+GameForm = connect(mapStateToProps)(GameForm);
 
 export default GameForm;

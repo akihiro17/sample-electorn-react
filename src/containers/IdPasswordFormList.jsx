@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import IdForm from './IdForm';
+import IdForm from '../components/IdForm';
 
 let IdPasswordFormList = ({ids, onChangeContent, onChangeId, onChangePassword, addId, deleteId}) => {
   const onClick = () => {
