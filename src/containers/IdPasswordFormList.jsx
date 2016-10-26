@@ -17,8 +17,8 @@ let IdPasswordFormList = ({ids, onChangeContent, onChangeId, onChangePassword, a
   return (
     <div>
       {id_forms}
-      <button onClick={onClick}>+</button>
-      <button onClick={onDelete}>-</button>
+      <button onClick={onClick}>コンテンツを追加</button>
+      <button onClick={onDelete}>コンテンツを削除</button>
     </div>
   );
 };
