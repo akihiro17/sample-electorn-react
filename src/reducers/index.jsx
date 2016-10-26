@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import update from 'immutability-helper';
 
 function to(state = {}, action) {
   switch(action.type) {
@@ -96,7 +95,7 @@ function ids(state = [], action) {
 }
 
 const changeText = combineReducers(
-  {to, cc, division, name, game, ids: ids}
+  {to, cc, division, name, game, ids}
 );
 
 export default changeText;
