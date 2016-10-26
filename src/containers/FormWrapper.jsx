@@ -7,7 +7,7 @@ import GameForm from './GameForm';
 import DivisionForm from './DivisionForm';
 import IdPasswordFormList from './IdPasswordFormList.jsx';
 
-let FormWrapper = ({name, game, cc, to, division, ids}) => {
+let FormWrapper = ({name, game, cc, to, division}) => {
   const style = Object.assign({},{
     flexBasis: '30%',
     marginLeft: '10%'

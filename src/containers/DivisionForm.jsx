@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -18,9 +18,13 @@ let DivisionForm = ({dispatch}) => {
   return (
     <div>
       <p>所属:</p>
-      <input style={style} type="text" ref={node => {input = node;}} onChange={changeDivision} />
+      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeDivision} />
     </div>
   );
+};
+
+DivisionForm.propTypes = {
+  dispatch: PropTypes.func.isRequired
 };
 
 DivisionForm = connect()(DivisionForm);

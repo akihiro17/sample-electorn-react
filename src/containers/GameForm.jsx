@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -18,9 +18,13 @@ let GameForm = ({dispatch}) => {
   return (
     <div>
       <p>ゲーム名</p>
-      <input style={style} type="text" ref={node => {input = node;}} onChange={changeGame}/>
+      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeGame}/>
     </div>
   );
+};
+
+GameForm.propTypes = {
+  dispatch: PropTypes.func.isRequired
 };
 
 GameForm = connect()(GameForm);

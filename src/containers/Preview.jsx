@@ -1,7 +1,4 @@
-import React from 'react';
-import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 import PreViewTemplate from '../components/PreviewTemplate';
 
 function renderPreview(to, cc, division, name, game, ids) {

@@ -2,7 +2,7 @@ import React from 'react';
 import PreView from '../containers/Preview';
 import FormWrapper from '../containers/FormWrapper.jsx';
 
-let View = () => {
+const View = () => {
   const style = Object.assign({},{
     display: 'flex',
     flexDirection: 'row',

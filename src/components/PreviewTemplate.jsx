@@ -1,7 +1,5 @@
 import React from 'react';
 import copy from 'copy-to-clipboard';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 
 const CopyButton = React.createClass({
   propTypes: {

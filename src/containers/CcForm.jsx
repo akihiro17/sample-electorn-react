@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -19,6 +19,10 @@ let CcForm = ({dispatch}) => {
       <input style={style} type="text" onChange={changeCc}/>
     </div>
   );
+};
+
+CcForm.propTypes = {
+  dispatch: PropTypes.func.isRequired
 };
 
 CcForm = connect()(CcForm);

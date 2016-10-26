@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -18,10 +18,15 @@ let NameForm = ({dispatch}) => {
   return (
     <div>
       <p>名前</p>
-      <input style={style} type="text" ref={node => {input = node;}} onChange={changeName}/>
+      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeName}/>
     </div>
   );
 };
+
+NameForm.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
 
 NameForm = connect()(NameForm);
 
