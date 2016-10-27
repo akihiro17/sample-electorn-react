@@ -1,22 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let DivisionForm = ({division, dispatch}) => {
-  const style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
   const changeDivision = (e) => {
     dispatch(actions.changeDivision(e.target.value));
   };
 
   return (
-    <div>
-      <p>所属:</p>
-      <input style={style} type="text" value={division} onChange={changeDivision} />
-    </div>
+    <FormGroup controlId="formControlsText">
+      <ControlLabel>所属</ControlLabel>
+      <FormControl placeholder="所属" value={division} onChange={changeDivision}/>
+    </FormGroup>
   );
 };
 

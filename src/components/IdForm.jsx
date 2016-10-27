@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 const IdForm = ({id, onChangeContent, onChangeId, onChangePassword}) => {
   const style = {
@@ -9,19 +10,20 @@ const IdForm = ({id, onChangeContent, onChangeId, onChangePassword}) => {
     padding: '5%'
   };
 
-  const input_style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
   return (
     <div key={id.index} style={style}>
-      <p>コンテンツ名</p>
-      <input style={input_style} type="text" value={id.content} onChange={(e) => onChangeContent(e.target.value, id.index)}/>
-        <p>id</p>
-        <input style={input_style} type="text" value={id.id} onChange={(e) => onChangeId(e.target.value, id.index)}/>
-          <p>パスワード</p>
-          <input style={input_style} type="text" value={id.password} onChange={(e) => onChangePassword(e.target.value, id.index)}/>
+      <FormGroup controlId="formControlsText">
+        <ControlLabel>コンテンツ名</ControlLabel>
+        <FormControl placeholder="コンテンツ名" value={id.content} onChange={(e) => onChangeContent(e.target.value, id.index)}/>
+      </FormGroup>
+      <FormGroup controlId="formControlsText">
+        <ControlLabel>ID</ControlLabel>
+        <FormControl placeholder="ID" value={id.id} onChange={(e) => onChangeId(e.target.value, id.index)}/>
+      </FormGroup>
+      <FormGroup controlId="formControlsText">
+        <ControlLabel>パスワード</ControlLabel>
+        <FormControl placeholder="パスワード" value={id.password} onChange={(e) => onChangePassword(e.target.value, id.index)}/>
+      </FormGroup>
     </div>
   );
 };

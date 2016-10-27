@@ -1,25 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
-let NameForm = ({dispatch}) => {
-  const style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
-  let input;
+let NameForm = ({name, dispatch}) => {
   const changeName = (e) => {
-    e.preventDefault();
     dispatch(actions.changeName(e.target.value));
-    input.value = e.target.value;
   };
 
   return (
-    <div>
-      <p>名前</p>
-      <input style={style} type="text" ref={(node) => {input = node;}} onChange={changeName}/>
-    </div>
+    <FormGroup controlId="formControlsText">
+      <ControlLabel>名前</ControlLabel>
+      <FormControl placeholder="名前" value={name} onChange={changeName}/>
+    </FormGroup>
   );
 };
 
@@ -27,7 +20,11 @@ NameForm.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return { name: state.name };
+}
 
-NameForm = connect()(NameForm);
+
+NameForm = connect(mapStateToProps)(NameForm);
 
 export default NameForm;

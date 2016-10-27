@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let CcForm = ({cc, dispatch}) => {
@@ -13,10 +14,11 @@ let CcForm = ({cc, dispatch}) => {
   };
 
   return (
-    <div>
-      <p>Cc:</p>
-      <input style={style} type="text" value={cc} onChange={changeCc}/>
-    </div>
+    <FormGroup controlId="formControlsText"
+               type="text">
+      <ControlLabel>CC</ControlLabel>
+      <FormControl placeholder="CC" value={cc} onChange={changeCc}/>
+    </FormGroup>
   );
 };
 

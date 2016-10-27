@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let ToForm = ({to, dispatch}) => {
@@ -13,10 +14,10 @@ let ToForm = ({to, dispatch}) => {
   };
 
   return (
-    <div style={style}>
-      <p>To:</p>
-      <input style={style} type="text" value={to} onChange={onChange}/>
-    </div>
+    <FormGroup controlId="formControlsText">
+      <ControlLabel>To</ControlLabel>
+      <FormControl placeholder="あて先" value={to} onChange={onChange}/>
+    </FormGroup>
   );
 };
 

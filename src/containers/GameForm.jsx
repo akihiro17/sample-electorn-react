@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let GameForm = ({game, dispatch}) => {
@@ -13,10 +14,10 @@ let GameForm = ({game, dispatch}) => {
   };
 
   return (
-    <div>
-      <p>ゲーム名</p>
-      <input style={style} type="text" value={game} onChange={changeGame}/>
-    </div>
+   <FormGroup controlId="formControlsText">
+      <ControlLabel>ゲーム名</ControlLabel>
+      <FormControl placeholder="ゲーム名" value={game} onChange={changeGame}/>
+    </FormGroup>
   );
 };
 

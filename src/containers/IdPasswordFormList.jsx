@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button, ButtonToolbar} from 'react-bootstrap';
 import * as actions from '../actions';
 import IdForm from '../components/IdForm';
 
@@ -17,8 +18,10 @@ let IdPasswordFormList = ({ids, onChangeContent, onChangeId, onChangePassword, a
   return (
     <div>
       {id_forms}
-      <button onClick={onClick}>コンテンツを追加</button>
-      <button onClick={onDelete}>コンテンツを削除</button>
+      <ButtonToolbar>
+        <Button bsStyle="success" onClick={onClick}>コンテンツを追加</Button>
+        <Button bsStyle="danger" onClick={onDelete}>コンテンツを削除</Button>
+      </ButtonToolbar>
     </div>
   );
 };
