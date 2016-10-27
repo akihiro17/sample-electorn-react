@@ -4,18 +4,12 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let CcForm = ({cc, dispatch}) => {
-  const style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
   const changeCc = (e) => {
     dispatch(actions.changeCc(e.target.value));
   };
 
   return (
-    <FormGroup controlId="formControlsText"
-               type="text">
+    <FormGroup controlId="formControlsText">
       <ControlLabel>CC</ControlLabel>
       <FormControl placeholder="CC" value={cc} onChange={changeCc}/>
     </FormGroup>

@@ -4,11 +4,6 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let ToForm = ({to, dispatch}) => {
-  const style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
   const onChange= (e) => {
     dispatch(actions.changeTo(e.target.value));
   };

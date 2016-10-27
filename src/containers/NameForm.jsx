@@ -17,6 +17,7 @@ let NameForm = ({name, dispatch}) => {
 };
 
 NameForm.propTypes = {
+  name: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

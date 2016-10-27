@@ -4,11 +4,6 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as actions from '../actions';
 
 let GameForm = ({game, dispatch}) => {
-  const style = {
-    boxSizing: 'content-box',
-    width: '100%'
-  };
-
   const changeGame = (e) => {
     dispatch(actions.changeGame(e.target.value));
   };
