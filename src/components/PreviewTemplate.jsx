@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import copy from 'copy-to-clipboard';
 import { Button } from 'react-bootstrap';
 
@@ -20,16 +21,15 @@ const PreViewTemplate = ({text}) => {
     marginLeft: '5%',
     backgroundColor: 'white',
     width: '100%',
-    height: '100%',
-    position: 'absolute',
-    top: '10%'
+    height: '100%'
   };
 
+  //       <CopyButton text={text}/>
   return (
-    <div style={{flexBasis: '50%', position: 'relative'}}>
-      <CopyButton text={text}/>
-      <textarea style={style} value={text} readOnly={true}/>
-    </div>
+     <FormGroup controlId="formControlsTextarea">
+       <ControlLabel>Textarea</ControlLabel>
+       <FormControl componentClass="textarea" placeholder="textarea" value={text} readOnly={true}/>
+    </FormGroup>
   );
 };
 
