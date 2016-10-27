@@ -1,5 +1,6 @@
 import React from 'react';
 import copy from 'copy-to-clipboard';
+import { Button } from 'react-bootstrap';
 
 const CopyButton = React.createClass({
   propTypes: {
@@ -9,7 +10,7 @@ const CopyButton = React.createClass({
     copy(this.props.text);
   },
   render() {
-    return <button style={{marginLeft: '5%', position: 'absolute'}} onClick={this.copyToClipBoard}>copy to clipboard</button>;
+    return <Button bsStyle="primary" style={{marginLeft: '5%', position: 'absolute'}} onClick={this.copyToClipBoard}>copy to clipboard</Button>;
   }
 });
 
@@ -21,7 +22,7 @@ const PreViewTemplate = ({text}) => {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    top: '5%'
+    top: '10%'
   };
 
   return (
