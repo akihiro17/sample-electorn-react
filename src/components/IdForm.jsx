@@ -3,11 +3,8 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 const IdForm = ({id, onChangeContent, onChangeId, onChangePassword}) => {
   const style = {
-    marginRight: '10%',
-    marginBottom: '5%',
-    marginTop: '5%',
     borderStyle: 'groove',
-    padding: '5%'
+    padding: '2%'
   };
 
   return (
