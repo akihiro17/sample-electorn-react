@@ -46,36 +46,25 @@ function game(state = {}, action) {
 }
 
 function ids(state = [], action) {
+  function change(ids, key, index, value) {
+    return ids.map((id) => {
+      if (id.index == index) {
+        return Object.assign(id, {[key]: value});
+      } else {
+        return id;
+      }
+    });
+  }
+
   switch(action.type) {
   case 'CHANGE_CONTENT': {
-    const ids = state.map((id) => {
-      if (id.index == action.index) {
-        return ({id: id.id, password: id.password, content: action.text, index: id.index});
-      } else {
-        return id;
-      }
-    });
-    return ids;
+    return change(state, 'content', action.index, action.text);
   }
   case 'CHANGE_ID': {
-    const ids = state.map((id) => {
-      if (id.index == action.index) {
-        return ({id: action.text, password: id.password, content: id.content, index: id.index});
-      } else {
-        return id;
-      }
-    });
-    return ids;
+    return change(state, 'id', action.index, action.text);
   }
   case 'CHANGE_PASSWORD': {
-    const ids = state.map((id) => {
-      if (id.index == action.index) {
-        return ({id: id.id,  password: action.text, content: id.content, index: id.index});
-      } else {
-        return id;
-      }
-    });
-    return ids;
+    return change(state, 'password', action.index, action.text);
   }
   case 'ADD_ID':
     return [
