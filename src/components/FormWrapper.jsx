@@ -8,7 +8,6 @@ import IdPasswordFormList from '../containers/IdPasswordFormList.jsx';
 
 const FormWrapper = () => {
   const style = {
-    flexBasis: '30%',
     marginLeft: '10%'
   };
 
